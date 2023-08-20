@@ -16,8 +16,7 @@ return {
       lualine_b = { { "branch", icon = "" } },
       lualine_c = {},
       lualine_x = { "diagnostics", "diff" },
-      -- "fileformat "
-      lualine_y = { "encoding", "filetype", "searchcount" },
+      lualine_y = { "fileformat", "encoding", "filetype", "searchcount" },
       lualine_z = { "selectioncount", "progress", "location" },
     },
     winbar = {
