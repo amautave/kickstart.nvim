@@ -43,6 +43,10 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- To avoid using editor config file from in projects
+-- If needed this can be enabled later
+vim.g.editorconfig = false
+
 -- For nvim-tree configuration
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
@@ -216,6 +220,8 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   { import = 'custom.plugins' },
+
+  require 'custom.config.autocmds'
 }, {})
 
 -- [[ Setting options ]]
@@ -445,7 +451,11 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {
+    -- npm i -g typescript-language-server <== Needed
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    cmd = { "typescript-language-server", "--stdio" }
+  },
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
@@ -528,6 +538,25 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+
+-- Custom Autocmds
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--   callback = function()
+--     vim.cmd [[%s/\s\+$//e]]
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "BufRead" }, {
+--   callback = function()
+--     local line = vim.api.nvim_get_current_line()
+--     vim.noti:
+--     if line:sub(-2) == "\r\n" then
+--       vim.opt.ff = "dos"
+--     end
+--   end
+-- })
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

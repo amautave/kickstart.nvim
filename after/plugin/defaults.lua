@@ -12,7 +12,7 @@ vim.keymap.set('n', '<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<
 	{ desc = '[T]oggleTerm [H]orizontal split' })
 vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>',
 	{ desc = '[T]oggleTerm [V]ertical split' })
--- vim.keymap.set('n', '<F7>', '<cmd>ToggleTermal<cr>', { desc = 'ToggleTerm' })
+vim.keymap.set('n', '<F7>', '<cmd>ToggleTermal<cr>', { desc = 'ToggleTerm' })
 
 -- maps.n["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float" }
 -- maps.n["<leader>th"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "ToggleTerm horizontal split" }
