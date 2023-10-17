@@ -22,8 +22,13 @@ return {
     winbar = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = {},
-      --[[    lualine_c = { "filename" }, ]]
+      -- lualine_c = {},
+      lualine_c = {
+        {
+          function() return require("nvim-navic").get_location() end,
+          cond = function() return package.loaded["nvim-navic"] and require("nvim-navic").is_available() end,
+        }
+      },
       lualine_x = {},
       lualine_y = {},
       lualine_z = {},
@@ -37,17 +42,17 @@ return {
       lualine_z = {},
     },
     tabline = {
-      lualine_a = { 'buffers' },
-      lualine_b = { { "filename", file_status = true, path = 1 } },
-      lualine_c = {
-        -- {
-        --   function() return require("nvim-navic").get_location() end,
-        --   cond = function() return package.loaded["nvim-navic"] and require("nvim-navic").is_available() end,
-        -- }
-      },
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = { 'tabs' }
+      -- lualine_a = { 'buffers' },
+      -- lualine_b = { { "filename", file_status = true, path = 1 } },
+      -- lualine_c = {
+      --   -- {
+      --   --   function() return require("nvim-navic").get_location() end,
+      --   --   cond = function() return package.loaded["nvim-navic"] and require("nvim-navic").is_available() end,
+      --   -- }
+      -- },
+      -- lualine_x = {},
+      -- lualine_y = {},
+      -- lualine_z = { 'tabs' }
     },
   },
 }
