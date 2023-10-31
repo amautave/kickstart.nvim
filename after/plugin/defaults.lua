@@ -22,3 +22,6 @@ vim.keymap.set('n', '<F7>', '<cmd>ToggleTermal<cr>', { desc = 'ToggleTerm' })
 
 vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
 vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
+
+
+vim.keymap.set('n', '<leader>ff', '<Cmd>KickstartFormatToggle<cr>', { desc = '[F]eature [F]ormat Toggle' })
