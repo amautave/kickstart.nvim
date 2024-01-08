@@ -20,50 +20,12 @@ vim.opt.rtp:prepend(lazypath)
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-
-	-- NOTE: This is where your plugins related to LSP can be installed.
-	--  The configuration is done below. Search for lspconfig to find it below.
-	{
-		-- LSP Configuration & Plugins
-		'neovim/nvim-lspconfig',
-		dependencies = {
-			-- Automatically install LSPs to stdpath for neovim
-			'williamboman/mason.nvim',
-			'williamboman/mason-lspconfig.nvim',
-
-			-- Useful status updates for LSP
-			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ 'j-hui/fidget.nvim', tag = 'legacy', opts = {} }, -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
-
-			-- Additional lua configuration, makes nvim stuff amazing!
-			'folke/neodev.nvim',
-			-- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
-		},
-	},
-
-	{
-		-- Highlight, edit, and navigate code
-		'nvim-treesitter/nvim-treesitter',
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter-textobjects',
-		},
-		build = ':TSUpdate',
-		config = function()
-			pcall(require('nvim-treesitter.install').update { with_sync = true })
-		end,
-	},
-
-	-- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-	--       These are some example plugins that I've included in the kickstart repository.
-	--       Uncomment any of the lines below to enable them.
-	require 'kickstart.plugins.autoformat',
-	-- require 'kickstart.plugins.debug',
-
-	--    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-	--    up-to-date with whatever is in the kickstart repo.
-	--    Uncomment the following line and add your plugins to `lua/amautave/plugins/*.lua` to get going.
-	--
 	--    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
 	{ import = 'amautave.plugins' },
 
+	require 'kickstart.plugins.autoformat',
+	-- require 'kickstart.plugins.debug',
 }, {})
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
