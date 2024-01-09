@@ -4,6 +4,7 @@ return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   event = "VeryLazy",
+  -- event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     'williamboman/mason.nvim',
@@ -17,7 +18,7 @@ return {
     'folke/neodev.nvim',
     -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
   },
-  config = function()
+  config = function ()
     local navic = require("nvim-navic")
 
     --  This function gets run when an LSP connects to a particular buffer.

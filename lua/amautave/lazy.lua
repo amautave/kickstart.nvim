@@ -23,7 +23,7 @@ require('lazy').setup({
 	--    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
 	{ import = 'amautave.plugins' },
 
-	require 'kickstart.plugins.autoformat',
+	-- require 'kickstart.plugins.autoformat',
 	-- require 'kickstart.plugins.debug',
 }, {})
 

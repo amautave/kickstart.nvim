@@ -22,4 +22,4 @@ vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
 vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
 
 
-vim.keymap.set('n', '<leader>ff', '<Cmd>KickstartFormatToggle<cr>', { desc = '[F]eature [F]ormat Toggle' })
+vim.keymap.set('n', '<leader>ff', '<Cmd>LspFormatToggle<cr>', { desc = '[F]eature [F]ormat Toggle' })

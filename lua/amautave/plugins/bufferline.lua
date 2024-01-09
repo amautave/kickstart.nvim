@@ -13,10 +13,11 @@ return {
         color_icons = true,
         enforce_regular_tabs = true,
         show_tab_indicators = true,
+        -- Consider use of edgy.nvim
         -- offsets = {
         --   {
-        --     filetye = "NeoTree",
-        --     text = "Neo File Exp",
+        --     filetye = "neo-tree",
+        --     text = "NeoTree Explorer",
         --     text_align = "left",
         --     separator = true
         --   }
