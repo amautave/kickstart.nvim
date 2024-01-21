@@ -7,11 +7,10 @@ vim.keymap.set('n', '<leader>eg', '<cmd>Neotree float git_status<cr>', { desc = 
 vim.keymap.set('n', '<leader>eb', '<cmd>Neotree buffers<cr>', { desc = '[E]xplorer [B]uffers' })
 
 vim.keymap.set('n', '<leader>tf', '<cmd>ToggleTerm direction=float<cr>', { desc = '[T]oggleTerm [F]loat' })
-vim.keymap.set('n', '<leader>th', '<cmd>ToggleTerm size=10 direction=horizontal<cr>',
+vim.keymap.set('n', '<leader>th', '<cmd>ToggleTerm size=15 direction=horizontal<cr>',
 	{ desc = '[T]oggleTerm [H]orizontal split' })
 vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr>',
 	{ desc = '[T]oggleTerm [V]ertical split' })
-vim.keymap.set('n', '<F7>', '<cmd>ToggleTermal<cr>', { desc = 'ToggleTerm' })
 
 -- maps.n["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float" }
 -- maps.n["<leader>th"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "ToggleTerm horizontal split" }
