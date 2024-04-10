@@ -7,6 +7,7 @@ return {
   event = 'VeryLazy',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'windwp/nvim-ts-autotag',
   },
   build = ':TSUpdate',
   config = function()
@@ -16,7 +17,27 @@ return {
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
       -- ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
-      ensure_installed = { 'lua', 'python', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+      ensure_installed = {
+        'lua',
+        'python',
+        'tsx',
+        'json',
+        'javascript',
+        'typescript',
+        'vimdoc',
+        'vim',
+        'bash',
+        'yaml',
+        'html',
+        'css',
+        'markdown',
+        'markdown_inline',
+        -- 'svelte',
+        -- 'graphql',
+        'dockerfile',
+        'gitignore',
+        -- 'prisma',
+      },
       sync_install = false,
 
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -25,6 +46,7 @@ return {
 
       highlight = { enable = true },
       indent = { enable = true },
+      autotag = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {

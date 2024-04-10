@@ -20,4 +20,10 @@ return {
     dependencies = { "neovim/nvim-lspconfig" }
   },
 
+  -- Enhace popups
+  {
+    'stevearc/dressing.nvim',
+    event = 'VeryLazy',
+    opts = {},
+  }
 }

@@ -15,7 +15,15 @@ return {
       lualine_a = { { "mode", upper = true } },
       lualine_b = { { "branch", icon = "" } },
       lualine_c = {},
-      lualine_x = { "diagnostics", "diff" },
+      lualine_x = {
+        {
+          require("lazy.status").updates,
+          cond = require("lazy.status").has_updates,
+          color = { fg = "#ff9e64" },
+        },
+        "diagnostics",
+        "diff"
+      },
       lualine_y = { "fileformat", "encoding", "filetype", "searchcount" },
       lualine_z = { "selectioncount", "progress", "location" },
     },
