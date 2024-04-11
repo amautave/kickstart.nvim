@@ -46,14 +46,21 @@ return {
 
       highlight = { enable = true },
       indent = { enable = true },
-      autotag = { enable = true },
+      -- TODO Make sure autotag works
+      autotag = {
+        enable = true,
+        enable_rename = true,
+        enable_close = true,
+        enable_close_on_slash = true,
+        filetypes = { "html", "xml", "tsx", "jsx"},
+      },
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<c-space>',
-          node_incremental = '<c-space>',
-          scope_incremental = '<c-s>',
-          node_decremental = '<M-space>',
+          init_selection = '<CR>',
+          node_incremental = '<CR>',
+          scope_incremental = '<Tab>',
+          node_decremental = '<s-Tab>',
         },
       },
       textobjects = {

@@ -26,6 +26,7 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
+    "folke/todo-comments.nvim",
   },
   config = function()
     -- [[ Configure Telescope ]]
@@ -112,6 +113,7 @@ return {
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>ss', require('telescope.builtin').lsp_document_symbols, { desc = '[S]earch [S]ymbols'})
-    vim.keymap.set('n', '<leader>st', require('telescope.builtin').colorscheme, { desc = '[S]witch [T]heme'})
+    vim.keymap.set('n', '<leader>sc', require('telescope.builtin').colorscheme, { desc = '[S]witch [C]olorscheme'})
+    vim.keymap.set('n', '<leader>st', "<cmd>TodoTelescope<cr>", { desc = '[S]earch [T]ODO Comments '})
   end
 }

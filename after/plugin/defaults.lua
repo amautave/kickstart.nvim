@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>x', ':bd<cr>', { desc = '[X] Close Buffer' })
+vim.keymap.set('n', '<C-x>', ':bd<cr>', { desc = '[X] Close Buffer' })
 
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
