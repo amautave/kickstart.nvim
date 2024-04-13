@@ -19,11 +19,15 @@ return {
 
     local navic = require("nvim-navic")
 
-    local keymap = vim.keymap -- for conciseness
-
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
+        local client_id = ev.data.client_id
+        local client = vim.lsp.get_client_by_id(client_id)
+        local bufnr = ev.buf
+
+        navic.attach(client, bufnr)
+
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
 
@@ -34,7 +38,7 @@ return {
             desc = 'LSP: ' .. desc
           end
 
-          vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = desc, silent = true })
+          vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, silent = true })
         end
         -- local opts = { buffer = ev.buf, silent = true }
 
@@ -47,7 +51,7 @@ return {
         nmap('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         nmap('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
         -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-        nmap('<leader>ss', require('telescope.builtin').lsp_document_symbols, { desc = '[S]earch [S]ymbols' })
+        nmap('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earch [S]ymbols')
         nmap('<leader>wy', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace S[y]mbols')
 
         -- See `:help K` for why this keymap
@@ -62,13 +66,13 @@ return {
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, '[W]orkspace [L]ist Folders')
 
-        nmap('<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-        nmap('<leader>sD', "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = '[S]earch [D]iagnostics for file' })
-        nmap('<leader>do', vim.diagnostic.open_float, { desc = '[D]iagnostic [O]pen float/line' })
-        nmap('<leader>dl', vim.diagnostic.setloclist, { desc = '[D]iagnostic [L]ist' })
-        nmap('[d', vim.diagnostic.goto_prev, { desc = 'Goto previous dianostic message' })
-        nmap(']d', vim.diagnostic.goto_prev, { desc = 'Goto next dianostic message' })
-        nmap('<leader>lr', ':LspRestart<CR>', { desc = '[L]SP [R]estart' })
+        nmap('<leader>sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
+        nmap('<leader>sD', "<cmd>Telescope diagnostics bufnr=0<CR>", '[S]earch [D]iagnostics for file')
+        nmap('<leader>do', vim.diagnostic.open_float, '[D]iagnostic [O]pen float/line')
+        nmap('<leader>dl', vim.diagnostic.setloclist, '[D]iagnostic [L]ist')
+        nmap('[d', vim.diagnostic.goto_prev, 'Goto previous dianostic message')
+        nmap(']d', vim.diagnostic.goto_prev, 'Goto next dianostic message')
+        nmap('<leader>lr', ':LspRestart<CR>', '[L]SP [R]estart')
 
         -- -- Create a command `:Format` local to the LSP buffer
         -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
