@@ -1,24 +1,75 @@
+-- NOTE: This is where your plugins related to LSP can be installed.
+--  The configuration is done below. Search for lspconfig to find it below.
 return {
-  "neovim/nvim-lspconfig",
+  -- LSP Configuration & Plugins
+  'neovim/nvim-lspconfig',
+  -- event = "VeryLazy",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
+    -- Automatically install LSPs to stdpath for neovim
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+
+    -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+    'hrsh7th/cmp-nvim-lsp',
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim",                   opts = {} },
-    { 'j-hui/fidget.nvim',                   opts = {} }
+    -- Additional lua configuration, makes nvim stuff amazing!
+    "folke/neodev.nvim",
+    -- Useful status updates for LSP
+    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+    { 'j-hui/fidget.nvim',                   opts = {} },
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
+    -- mason-lspconfig requires that these setup functions are called in this order
+    -- before setting up the servers.
+    local mason = require('mason')
+    local mason_lspconfig = require('mason-lspconfig')
+    local mason_tool_installer = require("mason-tool-installer")
 
-    -- import mason_lspconfig plugin
-    local mason_lspconfig = require("mason-lspconfig")
+    -- Setup neovim lua configuration
+    require('neodev').setup()
 
-    -- import cmp-nvim-lsp plugin
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    -- enable mason and configure icons
+    mason.setup({
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
+        },
+      },
+    })
+
+    mason_lspconfig.setup({
+      -- list of servers for mason to install
+      ensure_installed = {
+        "tsserver",
+        "html",
+        "cssls",
+        "tailwindcss",
+        "svelte",
+        "lua_ls",
+        "graphql",
+        "emmet_ls",
+        "prismals",
+        "pyright",
+      },
+    })
+
+    mason_tool_installer.setup({
+      ensure_installed = {
+        "prettier", -- prettier formatter
+        "stylua",   -- lua formatter
+        "isort",    -- python formatter
+        "black",    -- python formatter
+        "pylint",
+        "eslint_d",
+      },
+    })
+
 
     local navic = require("nvim-navic")
-
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -40,7 +91,6 @@ return {
 
           vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, silent = true })
         end
-        -- local opts = { buffer = ev.buf, silent = true }
 
         -- set keybinds
         nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -74,54 +124,17 @@ return {
         nmap(']d', vim.diagnostic.goto_prev, 'Goto next dianostic message')
         nmap('<leader>lr', ':LspRestart<CR>', '[L]SP [R]estart')
 
-        -- -- Create a command `:Format` local to the LSP buffer
-        -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        --   vim.lsp.buf.format()
-        -- end, { desc = 'Format current buffer with LSP' })
-
-        -- opts.desc = "Show LSP references"
-        -- keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
-
-        -- opts.desc = "Go to declaration"
-        -- keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
-
-        -- opts.desc = "Show LSP definitions"
-        -- keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
-
-        -- opts.desc = "Show LSP implementations"
-        -- keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
-
-        -- opts.desc = "Show LSP type definitions"
-        -- keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-
-        -- opts.desc = "See available code actions"
-        -- keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-
-        -- opts.desc = "Smart rename"
-        -- keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-        -- opts.desc = "Show buffer diagnostics"
-        -- keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-
-        -- opts.desc = "Show line diagnostics"
-        -- keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-        -- opts.desc = "Go to previous diagnostic"
-        -- keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
-
-        -- opts.desc = "Go to next diagnostic"
-        -- keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
-
-        -- opts.desc = "Show documentation for what is under cursor"
-        -- keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
-        -- opts.desc = "Restart LSP"
-        -- keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+        -- Create a command `:Format` local to the LSP buffer
+        vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+          vim.lsp.buf.format()
+        end, { desc = 'Format current buffer with LSP' })
       end,
     })
 
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
+
+    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
@@ -130,6 +143,8 @@ return {
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
+
+    local lspconfig = require("lspconfig")
 
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
@@ -171,6 +186,7 @@ return {
         -- configure lua server (with special settings)
         lspconfig["lua_ls"].setup({
           capabilities = capabilities,
+          -- cmd = { 'lua-language-server.cmd'},
           settings = {
             Lua = {
               -- make the language server recognize "vim" global
@@ -180,10 +196,12 @@ return {
               completion = {
                 callSnippet = "Replace",
               },
+              workspace = { checkThirdParty = false },
+              telemetry = { enable = false },
             },
           },
         })
       end,
     })
-  end,
+  end
 }
