@@ -28,12 +28,12 @@ return {
       },
     }
 
-    vim.keymap.set({ 'n', 'v' }, '<leader>ff', function()
+    vim.keymap.set({ 'n', 'v' }, '<leader>cf', function()
       conform.format {
         lsp_fallback = true,
         async = false,
         timeout_ms = 1000,
       }
-    end, { desc = '[F]ormat [F]ile or range (in visual mode)' })
+    end, { desc = '[C]ode [F]ormat File or range (in visual mode)' })
   end,
 }
