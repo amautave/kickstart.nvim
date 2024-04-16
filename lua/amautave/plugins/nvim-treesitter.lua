@@ -32,11 +32,11 @@ return {
         'css',
         'markdown',
         'markdown_inline',
-        -- 'svelte',
-        -- 'graphql',
+        'svelte',
+        'graphql',
         'dockerfile',
         'gitignore',
-        -- 'prisma',
+        'prisma',
       },
       sync_install = false,
 
@@ -52,7 +52,7 @@ return {
         enable_rename = true,
         enable_close = true,
         enable_close_on_slash = true,
-        filetypes = { "html", "xml", "tsx", "jsx"},
+        filetypes = { 'html', 'xml', 'tsx', 'jsx' },
       },
       incremental_selection = {
         enable = true,

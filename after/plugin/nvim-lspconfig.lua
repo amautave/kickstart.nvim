@@ -1,4 +1,4 @@
--- Switch for controlling whether you want autoformatting.
+--[[ -- Switch for controlling whether you want autoformatting.
 --  Use :LspFormatToggle to toggle autoformatting on or off
 local format_is_enabled = false
 vim.api.nvim_create_user_command('LspFormatToggle', function()
@@ -61,4 +61,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end,
     })
   end,
-})
+}) ]]

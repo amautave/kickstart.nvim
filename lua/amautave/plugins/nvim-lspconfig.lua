@@ -4,7 +4,7 @@ return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   -- event = "VeryLazy",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     'williamboman/mason.nvim',
@@ -13,65 +13,64 @@ return {
 
     -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
     'hrsh7th/cmp-nvim-lsp',
-    { "antosha417/nvim-lsp-file-operations", config = true },
+    { 'antosha417/nvim-lsp-file-operations', config = true },
     -- Additional lua configuration, makes nvim stuff amazing!
-    "folke/neodev.nvim",
+    'folke/neodev.nvim',
     -- Useful status updates for LSP
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim',                   opts = {} },
+    { 'j-hui/fidget.nvim', opts = {} },
   },
   config = function()
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before setting up the servers.
-    local mason = require('mason')
-    local mason_lspconfig = require('mason-lspconfig')
-    local mason_tool_installer = require("mason-tool-installer")
+    local mason = require 'mason'
+    local mason_lspconfig = require 'mason-lspconfig'
+    local mason_tool_installer = require 'mason-tool-installer'
 
     -- Setup neovim lua configuration
     require('neodev').setup()
 
     -- enable mason and configure icons
-    mason.setup({
+    mason.setup {
       ui = {
         icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
         },
       },
-    })
+    }
 
-    mason_lspconfig.setup({
+    mason_lspconfig.setup {
       -- list of servers for mason to install
       ensure_installed = {
-        "tsserver",
-        "html",
-        "cssls",
-        "tailwindcss",
-        "svelte",
-        "lua_ls",
-        "graphql",
-        "emmet_ls",
-        "prismals",
-        "pyright",
+        'tsserver',
+        'html',
+        'cssls',
+        'tailwindcss',
+        'svelte',
+        'lua_ls',
+        'graphql',
+        'emmet_ls',
+        'prismals',
+        'pyright',
       },
-    })
+    }
 
-    mason_tool_installer.setup({
+    mason_tool_installer.setup {
       ensure_installed = {
-        "prettier", -- prettier formatter
-        "stylua",   -- lua formatter
-        "isort",    -- python formatter
-        "black",    -- python formatter
-        "pylint",
-        "eslint_d",
+        'prettier', -- prettier formatter
+        'stylua', -- lua formatter
+        'isort', -- python formatter
+        'black', -- python formatter
+        'pylint',
+        'eslint_d',
       },
-    })
+    }
 
-
-    local navic = require("nvim-navic")
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    local navic = require 'nvim-navic'
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
       callback = function(ev)
         local client_id = ev.data.client_id
         local client = vim.lsp.get_client_by_id(client_id)
@@ -106,7 +105,7 @@ return {
 
         -- See `:help K` for why this keymap
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-        nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+        nmap('<M-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
         -- Lesser used LSP functionality
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -117,7 +116,7 @@ return {
         end, '[W]orkspace [L]ist Folders')
 
         nmap('<leader>sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
-        nmap('<leader>sD', "<cmd>Telescope diagnostics bufnr=0<CR>", '[S]earch [D]iagnostics for file')
+        nmap('<leader>sD', '<cmd>Telescope diagnostics bufnr=0<CR>', '[S]earch [D]iagnostics for file')
         nmap('<leader>do', vim.diagnostic.open_float, '[D]iagnostic [O]pen float/line')
         nmap('<leader>dl', vim.diagnostic.setloclist, '[D]iagnostic [L]ist')
         nmap('[d', vim.diagnostic.goto_prev, 'Goto previous dianostic message')
@@ -131,77 +130,76 @@ return {
       end,
     })
 
-
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+    local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
     for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+      local hl = 'DiagnosticSign' .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
     end
 
-    local lspconfig = require("lspconfig")
+    local lspconfig = require 'lspconfig'
 
-    mason_lspconfig.setup_handlers({
+    mason_lspconfig.setup_handlers {
       -- default handler for installed servers
       function(server_name)
-        lspconfig[server_name].setup({
+        lspconfig[server_name].setup {
           capabilities = capabilities,
-        })
+        }
       end,
-      ["svelte"] = function()
+      ['svelte'] = function()
         -- configure svelte server
-        lspconfig["svelte"].setup({
+        lspconfig['svelte'].setup {
           capabilities = capabilities,
           on_attach = function(client, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePost", {
-              pattern = { "*.js", "*.ts" },
+            vim.api.nvim_create_autocmd('BufWritePost', {
+              pattern = { '*.js', '*.ts' },
               callback = function(ctx)
                 -- Here use ctx.match instead of ctx.file
-                client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+                client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
               end,
             })
           end,
-        })
+        }
       end,
-      ["graphql"] = function()
+      ['graphql'] = function()
         -- configure graphql language server
-        lspconfig["graphql"].setup({
+        lspconfig['graphql'].setup {
           capabilities = capabilities,
-          filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-        })
+          filetypes = { 'graphql', 'gql', 'svelte', 'typescriptreact', 'javascriptreact' },
+        }
       end,
-      ["emmet_ls"] = function()
+      ['emmet_ls'] = function()
         -- configure emmet language server
-        lspconfig["emmet_ls"].setup({
+        lspconfig['emmet_ls'].setup {
           capabilities = capabilities,
-          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-        })
+          filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte' },
+        }
       end,
-      ["lua_ls"] = function()
+      ['lua_ls'] = function()
         -- configure lua server (with special settings)
-        lspconfig["lua_ls"].setup({
+        lspconfig['lua_ls'].setup {
           capabilities = capabilities,
           -- cmd = { 'lua-language-server.cmd'},
           settings = {
             Lua = {
               -- make the language server recognize "vim" global
               diagnostics = {
-                globals = { "vim" },
+                globals = { 'vim' },
               },
               completion = {
-                callSnippet = "Replace",
+                callSnippet = 'Replace',
               },
               workspace = { checkThirdParty = false },
               telemetry = { enable = false },
             },
           },
-        })
+        }
       end,
-    })
-  end
+    }
+  end,
 }

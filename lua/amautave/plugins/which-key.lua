@@ -1,6 +1,6 @@
 return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
+  'folke/which-key.nvim',
+  event = 'VeryLazy',
   init = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 500
@@ -21,7 +21,8 @@ return {
       ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
       ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       ['<leader>ws'] = { name = '[S]ession', _ = 'which_key_ignore' },
-      ['<leader>f'] = { name = '[F]eature', _ = 'which_key_ignore' },
+      ['<leader>x'] = { name = '[X] Trouble', _ = 'which_key_ignore' },
+      ['<leader>t'] = { name = '[T]ab', _ = 'which_key_ignore' },
     }
   end,
 }

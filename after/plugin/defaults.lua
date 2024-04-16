@@ -1,5 +1,3 @@
-vim.keymap.set('n', '<C-x>', ':bd<cr>', { desc = '[X] Close Buffer' })
-
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
 vim.keymap.set('n', '<leader>et', '<cmd>Neotree toggle<cr>', { desc = '[E]xplorer [T]oggle' })
@@ -21,5 +19,4 @@ vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm size=80 direction=vertical<cr
 vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
 vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
 
-
-vim.keymap.set('n', '<leader>ff', '<Cmd>LspFormatToggle<cr>', { desc = '[F]eature [F]ormat Toggle' })
+vim.keymap.set('n', '<leader>gb', '<cmd>GBrowse<CR>', { desc = '[G]it Open File in [B]rowser' })
