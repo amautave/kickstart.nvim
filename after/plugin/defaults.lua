@@ -1,5 +1,3 @@
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-
 vim.keymap.set('n', '<leader>et', '<cmd>Neotree toggle<cr>', { desc = '[E]xplorer [T]oggle' })
 vim.keymap.set('n', '<C-n>', '<cmd>Neotree toggle<cr>', { desc = 'Toggle [N]eotree' })
 vim.keymap.set('n', '<leader>ef', '<cmd>Neotree focus<cr>', { desc = '[E]xplorer [F]ocus' })

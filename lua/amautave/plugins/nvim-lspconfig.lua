@@ -100,7 +100,7 @@ return {
         nmap('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         nmap('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
         -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-        nmap('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earch [S]ymbols')
+        nmap('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[F]ind [S]ymbols')
         nmap('<leader>wy', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace S[y]mbols')
 
         -- See `:help K` for why this keymap
@@ -115,8 +115,8 @@ return {
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, '[W]orkspace [L]ist Folders')
 
-        nmap('<leader>sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
-        nmap('<leader>sD', '<cmd>Telescope diagnostics bufnr=0<CR>', '[S]earch [D]iagnostics for file')
+        nmap('<leader>fd', require('telescope.builtin').diagnostics, '[F]ind [D]iagnostics')
+        nmap('<leader>fD', '<cmd>Telescope diagnostics bufnr=0<CR>', '[F]ind [D]iagnostics for file')
         nmap('<leader>do', vim.diagnostic.open_float, '[D]iagnostic [O]pen float/line')
         nmap('<leader>dl', vim.diagnostic.setloclist, '[D]iagnostic [L]ist')
         nmap('[d', vim.diagnostic.goto_prev, 'Goto previous dianostic message')
@@ -140,6 +140,15 @@ return {
     for type, icon in pairs(signs) do
       local hl = 'DiagnosticSign' .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+    end
+
+    local function tsserver_organize_imports()
+      local params = {
+        command = '_typescript.organizeImports',
+        arguments = { vim.api.nvim_buf_get_name(0) },
+        title = '',
+      }
+      vim.lsp.buf.execute_command(params)
     end
 
     local lspconfig = require 'lspconfig'
@@ -196,6 +205,17 @@ return {
               },
               workspace = { checkThirdParty = false },
               telemetry = { enable = false },
+            },
+          },
+        }
+      end,
+      ['tsserver'] = function()
+        lspconfig['tsserver'].setup {
+          capabilities = capabilities,
+          commands = {
+            OrganizeImports = {
+              tsserver_organize_imports,
+              description = 'Organize Imports',
             },
           },
         }

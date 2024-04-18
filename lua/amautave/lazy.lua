@@ -28,8 +28,8 @@ require('lazy').setup({
 }, {
   checker = {
     enabled = true,
-    notify = true,
-  }
+    notify = false,
+  },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
