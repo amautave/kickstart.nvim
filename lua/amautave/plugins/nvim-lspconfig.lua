@@ -127,6 +127,10 @@ return {
         vim.api.nvim_buf_create_user_command(bufnr, 'FormatWithLSP', function(_)
           vim.lsp.buf.format()
         end, { desc = 'Format current buffer with LSP' })
+
+        if client.name == 'tsserver' then
+          nmap('<leader>co', ':OrganizeImports<CR>', '[C]ode [O]rganize Imports')
+        end
       end,
     })
 
