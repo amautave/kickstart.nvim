@@ -1,11 +1,11 @@
 return {
   'akinsho/bufferline.nvim',
-  version = "*",
+  version = '*',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     require('bufferline').setup {
       options = {
-        mode = "buffers",
+        mode = 'buffers',
         separator_style = 'slant',
         always_show_bufferline = true,
         show_buffer_close_icons = true,
@@ -44,5 +44,8 @@ return {
       --   }
       -- },
     }
+
+    vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
+    vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
   end,
 }

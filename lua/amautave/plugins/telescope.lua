@@ -102,7 +102,6 @@ return {
 
     vim.keymap.set('n', '<leader>f/', telescope_live_grep_open_files, { desc = '[F]ind [/] in Open Files' })
     vim.keymap.set('n', '<leader>fb', require('telescope.builtin').builtin, { desc = '[F]ind [B]uiltins' })
-    vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
     vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
     vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
     vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
@@ -112,5 +111,12 @@ return {
     vim.keymap.set('n', '<leader>sc', require('telescope.builtin').colorscheme, { desc = '[S]witch [C]olorscheme' })
     vim.keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<cr>', { desc = '[F]ind [T]ODO Comments ' })
     vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]esume' })
+    vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = 'Search [G]it [B]ranches' })
+    vim.keymap.set('n', '<leader>gB', '<cmd>GBrowse<CR>', { desc = '[G]it Open File in [B]rowser' })
+    vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+    vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = 'Search [G]it [S]tatus' })
+    vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = 'Search [G]it [C]ommits' })
+    vim.keymap.set('n', '<leader>gC', require('telescope.builtin').git_bcommits, { desc = 'Search [G]it Buffer [C]ommits' })
+    vim.keymap.set('n', '<leader>gt', require('telescope.builtin').git_stash, { desc = 'Search [G]it S[t]ash' })
   end,
 }
