@@ -17,12 +17,11 @@ return {
       ['<leader>d'] = { name = '[D]iagnostics', _ = 'which_key_ignore' },
       ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
       ['<leader>h'] = { name = '[H]unks (More Git)', _ = 'which_key_ignore' },
-      ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
       ['<leader>f'] = { name = '[F]ind', _ = 'which_key_ignore' },
       ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       ['<leader>ws'] = { name = '[S]ession', _ = 'which_key_ignore' },
       ['<leader>x'] = { name = '[X] Trouble', _ = 'which_key_ignore' },
-      ['<leader>t'] = { name = '[T]ab', _ = 'which_key_ignore' },
+      ['<leader>t'] = { name = '[T]ab / [T]oggle / [T]oggleTerm', _ = 'which_key_ignore' },
     }
   end,
 }
