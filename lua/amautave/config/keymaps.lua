@@ -22,7 +22,8 @@ vim.keymap.set('n', '<c-j>', '<C-w>j', { desc = 'Go to the down window' })
 vim.keymap.set('n', '<c-k>', '<C-w>k', { desc = 'Go to the up window' })
 vim.keymap.set('n', '<c-l>', '<C-w>l', { desc = 'Go to the right window' })
 
-vim.keymap.set('n', '<C-x>', ':bd<cr>', { desc = '[X] Close Buffer' })
+vim.keymap.set('n', '<leader>bd', ':bd<cr>', { desc = '[B]uffer [D]elete' })
+vim.keymap.set('n', '<leader>bo', ':BufOnly<cr>', { desc = '[B]uffer [O]nly', silent = true })
 vim.keymap.set('n', '<M-x>', ':close<cr>', { desc = '[X] Close Window' })
 
 -- -- window management
