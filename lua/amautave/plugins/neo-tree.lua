@@ -29,6 +29,7 @@ return {
         vim.keymap.set('n', '<leader>ef', '<cmd>Neotree focus<cr>', { desc = '[E]xplorer [F]ocus' })
         vim.keymap.set('n', '<leader>eg', '<cmd>Neotree float git_status<cr>', { desc = '[E]xplorer [G]it Status' })
         vim.keymap.set('n', '<leader>eb', '<cmd>Neotree buffers<cr>', { desc = '[E]xplorer [B]uffers' })
+        vim.keymap.set('n', '<leader>er', '<cmd>Neotree reveal<cr>', { desc = '[E]xplorer [R]eveal' })
       end,
     },
   },
