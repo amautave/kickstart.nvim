@@ -40,6 +40,13 @@ return {
             ['<C-d>'] = false,
           },
         },
+        layout_strategy = 'horizontal',
+        layout_config = {
+          horizontal = {
+            prompt_position = 'top',
+          },
+        },
+        sorting_strategy = 'ascending',
       },
     }
 
