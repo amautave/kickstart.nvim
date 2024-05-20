@@ -19,6 +19,17 @@ return {
         light = 'latte',
         dark = 'mocha',
       },
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        notify = true,
+        neotree = true,
+        window_picker = true,
+        lsp_trouble = true,
+        which_key = false,
+      },
     }
     -- setup must be called before loading
     vim.cmd.colorscheme 'catppuccin'
