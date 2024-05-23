@@ -131,6 +131,27 @@ return {
         if client.name == 'tsserver' then
           nmap('<leader>co', ':OrganizeImports<CR>', '[C]ode [O]rganize Imports')
         end
+
+        if client.server_capabilities.inlayHintProvider then
+          nmap('<leader>lh', function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+          end, '[L]SP Toggle Inlay [H]int')
+          -- -- Enable inlay hints initially based on mode
+          -- local mode = vim.api.nvim_get_mode().mode
+          -- vim.lsp.inlay_hint(bufnr, mode == 'n' or mode == 'v')
+          --
+          -- -- Autocmds to toggle on insert mode enter/leave
+          -- vim.api.nvim_create_autocmd('InsertEnter', {
+          --   callback = function()
+          --     vim.lsp.inlay_hint(bufnr, false)
+          --   end,
+          -- })
+          -- vim.api.nvim_create_autocmd('InsertLeave', {
+          --   callback = function()
+          --     vim.lsp.inlay_hint(bufnr, true)
+          --   end,
+          -- })
+        end
       end,
     })
 
@@ -220,6 +241,28 @@ return {
             OrganizeImports = {
               tsserver_organize_imports,
               description = 'Organize Imports',
+            },
+          },
+          settings = {
+            typescript = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+            javascript = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
             },
           },
         }

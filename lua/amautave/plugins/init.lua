@@ -13,8 +13,8 @@ return {
   'tpope/vim-sleuth',
 
   {
-    "SmiteshP/nvim-navic",
-    dependencies = { "neovim/nvim-lspconfig" }
+    'SmiteshP/nvim-navic',
+    dependencies = { 'neovim/nvim-lspconfig' },
   },
 
   -- Enhace popups
@@ -22,5 +22,9 @@ return {
     'stevearc/dressing.nvim',
     event = 'VeryLazy',
     opts = {},
-  }
+  },
+
+  {
+    'github/copilot.vim',
+  },
 }

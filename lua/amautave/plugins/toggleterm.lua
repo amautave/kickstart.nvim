@@ -11,7 +11,16 @@ local powershell_options = {
   shellxquote = '',
 }
 
-for option, value in pairs(powershell_options) do
+-- for option, value in pairs(powershell_options) do
+--   vim.opt[option] = value
+-- end
+
+local gitbash_options = {
+  shell = 'C:/Program Files/Git/bin/bash.exe',
+  shellcmdflag = '-s',
+}
+
+for option, value in pairs(gitbash_options) do
   vim.opt[option] = value
 end
 
