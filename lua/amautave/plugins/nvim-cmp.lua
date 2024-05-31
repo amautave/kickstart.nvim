@@ -1,10 +1,10 @@
 return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
-  event = "InsertEnter",
+  event = 'InsertEnter',
   dependencies = {
-    "hrsh7th/cmp-buffer", -- source for text in buffer
-    "hrsh7th/cmp-path",   -- source for file system paths
+    'hrsh7th/cmp-buffer', -- source for text in buffer
+    'hrsh7th/cmp-path', -- source for file system paths
 
     -- Snippet Engine & its associated nvim-cmp source
     'L3MON4D3/LuaSnip',
@@ -16,7 +16,7 @@ return {
     -- Adds a number of user-friendly snippets
     'rafamadriz/friendly-snippets',
 
-    "onsails/lspkind.nvim", -- vs-code like pictograms
+    'onsails/lspkind.nvim', -- vs-code like pictograms
   },
   config = function()
     -- See `:help cmp`
@@ -24,12 +24,12 @@ return {
     local luasnip = require 'luasnip'
     local lspkind = require 'lspkind'
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-    require("luasnip.loaders.from_vscode").lazy_load()
+    require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup {}
 
     cmp.setup {
       completion = {
-        completeopt = "menu,menuone,preview,noselect",
+        completeopt = 'menu,menuone,preview,noselect',
       },
       snippet = {
         expand = function(args)
@@ -46,24 +46,24 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
+        -- ['<Tab>'] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.select_next_item()
+        --   elseif luasnip.expand_or_locally_jumpable() then
+        --     luasnip.expand_or_jump()
+        --   else
+        --     fallback()
+        --   end
+        -- end, { 'i', 's' }),
+        -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.select_prev_item()
+        --   elseif luasnip.locally_jumpable(-1) then
+        --     luasnip.jump(-1)
+        --   else
+        --     fallback()
+        --   end
+        -- end, { 'i', 's' }),
       },
       sources = {
         { name = 'nvim_lsp' },
@@ -73,10 +73,10 @@ return {
       },
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
-        format = lspkind.cmp_format({
+        format = lspkind.cmp_format {
           maxwidth = 50,
-          ellipsis_char = "...",
-        }),
+          ellipsis_char = '...',
+        },
         expandable_indicator = true,
       },
     }

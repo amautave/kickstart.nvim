@@ -76,7 +76,9 @@ return {
         local client = vim.lsp.get_client_by_id(client_id)
         local bufnr = ev.buf
 
-        navic.attach(client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+          navic.attach(client, bufnr)
+        end
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions

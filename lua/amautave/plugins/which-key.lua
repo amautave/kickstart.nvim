@@ -19,7 +19,7 @@ return {
       ['<leader>h'] = { name = '[H]unks (More Git)', _ = 'which_key_ignore' },
       ['<leader>f'] = { name = '[F]ind', _ = 'which_key_ignore' },
       ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-      ['<leader>ws'] = { name = '[S]ession', _ = 'which_key_ignore' },
+      ['<leader>s'] = { name = '[S]with / [S]ession', _ = 'which_key_ignore' },
       ['<leader>x'] = { name = '[X] Trouble', _ = 'which_key_ignore' },
       ['<leader>t'] = { name = '[T]ab / [T]oggle / [T]oggleTerm', _ = 'which_key_ignore' },
     }

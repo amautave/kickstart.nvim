@@ -23,7 +23,7 @@ return {
       dashboard.button('SPC et', '  > Toggle file explorer', '<cmd>Neotree toggle<cr>'),
       dashboard.button('SPC ff', '󰱼  > Find File', '<cmd>Telescope find_files<CR>'),
       dashboard.button('SPC fg', '  > Find Word / Find Grep', '<cmd>Telescope live_grep<CR>'),
-      dashboard.button('SPC wsr', '󰁯  > Restore Session For Current Directory', '<cmd>SessionRestore<CR>'),
+      dashboard.button('SPC sr', '󰁯  > Restore Session For Current Directory', '<cmd>SessionRestore<CR>'),
       dashboard.button('q', '  > Quit', '<cmd>qa<CR>'),
     }
 
