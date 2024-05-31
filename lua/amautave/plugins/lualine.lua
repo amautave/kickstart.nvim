@@ -7,14 +7,17 @@ return {
       icons_enabled = true,
       globalstatus = true,
       theme = 'catppuccin',
-      component_separators = '|',
+      component_separators = { left = ' ', right = ' ' },
       section_separators = '',
     },
     extensions = { 'fugitive', 'neo-tree', 'toggleterm', 'trouble' },
     sections = {
       lualine_a = { { 'mode', upper = true } },
       lualine_b = { { 'branch', icon = '' } },
-      lualine_c = {},
+      lualine_c = {
+        '%=', -- make the indicator center
+        'harpoon2',
+      },
       lualine_x = {
         {
           require('lazy.status').updates,

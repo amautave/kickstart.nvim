@@ -22,6 +22,7 @@ return {
       ['<leader>s'] = { name = '[S]with / [S]ession', _ = 'which_key_ignore' },
       ['<leader>x'] = { name = '[X] Trouble', _ = 'which_key_ignore' },
       ['<leader>t'] = { name = '[T]ab / [T]oggle / [T]oggleTerm', _ = 'which_key_ignore' },
+      ['<M-h>'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
     }
   end,
 }
