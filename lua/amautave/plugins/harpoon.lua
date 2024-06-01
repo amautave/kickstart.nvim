@@ -41,10 +41,10 @@ return {
       harpoonSelectMap('<M-h>9', 9)
 
       -- Toggle previous & next buffers stored within Harpoon list
-      harpoonMap('<C-M-p>', function()
+      harpoonMap('<M-h>p', function()
         harpoon:list():prev()
       end, '[P]revious Harpoon')
-      harpoonMap('<C-M-n>', function()
+      harpoonMap('<M-h>n', function()
         harpoon:list():next()
       end, '[N]ext Harpoon')
 
