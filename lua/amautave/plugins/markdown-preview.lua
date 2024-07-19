@@ -17,8 +17,8 @@
 return {
   'iamcco/markdown-preview.nvim',
   cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-  -- build = 'cd app && npm install', -- For unix terminal
-  build = 'cd app ; npm install', -- For Windows terminal
+  build = 'cd app && npm install --no-package-lock', -- For unix terminal
+  -- build = 'cd app ; npm install', -- For Windows terminal
   init = function()
     vim.g.mkdp_filetypes = { 'markdown' }
   end,
