@@ -10,7 +10,7 @@ return {
       component_separators = { left = ' ', right = ' ' },
       section_separators = '',
     },
-    extensions = { 'fugitive', 'neo-tree', 'toggleterm', 'trouble' },
+    extensions = { 'fugitive', 'neo-tree', 'trouble' },
     sections = {
       lualine_a = { { 'mode', upper = true } },
       lualine_b = { { 'branch', icon = '' } },
